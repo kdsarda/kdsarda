@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Karan D. Sarda — HR Business Partner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F7F3EC;
+    --paper-2:#F1EBDF;
+    --ink:#262524;
+    --ink-soft:#5B5650;
+    --navy:#2E4057;
+    --mustard:#E0A458;
+    --sage:#8AA399;
+    --rule:#DDD6C8;
+    --rule-strong:#C9C0AE;
+    --max:1100px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  a{color:var(--navy); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--navy); outline-offset:3px;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.1;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--navy);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    display:inline-block;
+    width:22px;
+    height:1px;
+    background:var(--mustard);
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(247,243,236,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--rule);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 32px;
+    max-width:var(--max); margin:0 auto;
+  }
+  .nav-mark{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:500; font-size:15px;
+    letter-spacing:0.08em;
+    border:1px solid var(--ink);
+    padding:5px 10px;
+    line-height:1;
+  }
+  .nav-links{
+    display:flex; gap:28px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+  }
+  .nav-links a{color:var(--ink-soft);}
+  .nav-links a:hover{color:var(--navy); text-decoration:none;}
+  .nav-toggle{display:none;}
+
+  @media (max-width:760px){
+    .nav-links{
+      position:fixed; inset:60px 0 0 0;
+      background:var(--paper);
+      flex-direction:column;
+      padding:24px 32px;
+      gap:18px;
+      transform:translateY(-110%);
+      transition:transform 0.35s ease;
+      border-bottom:1px solid var(--rule);
+    }
+    .nav-links.open{transform:translateY(0);}
+    .nav-toggle{
+      display:block;
+      background:none; border:1px solid var(--ink);
+      font-family:'IBM Plex Mono', monospace;
+      font-size:12px; letter-spacing:0.1em;
+      padding:7px 12px; cursor:pointer; color:var(--ink);
+    }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:96px 0 80px;
+    border-bottom:1px solid var(--rule);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:48px;
+    align-items:end;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    margin:18px 0 8px;
+  }
+  .hero h1 .accent{
+    font-style:italic;
+    color:var(--navy);
+  }
+  .hero .role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:22px;
+  }
+  .hero p.lead{
+    max-width:540px;
+    font-size:1.15rem;
+    color:var(--ink-soft);
+  }
+  .hero-links{
+    display:flex; flex-direction:column; gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    text-align:right;
+  }
+  .hero-links a{
+    color:var(--ink);
+    border-bottom:1px solid var(--rule-strong);
+    padding-bottom:3px;
+  }
+  .hero-links a:hover{border-color:var(--navy); color:var(--navy); text-decoration:none;}
+
+  @media (max-width:760px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-links{flex-direction:row; flex-wrap:wrap; text-align:left; gap:18px;}
+  }
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{padding:88px 0;}
+  section + section{border-top:1px solid var(--rule);}
+  .section-head{margin-bottom:48px;}
+  .section-head h2{font-size:clamp(1.8rem, 4vw, 2.6rem); margin-top:14px;}
+  .section-head p{color:var(--ink-soft); max-width:620px; margin-top:14px;}
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity 0.7s ease, transform 0.7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- STORY ---------- */
+  .story-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:56px;}
+  .story-grid p{margin-bottom:18px; max-width:560px;}
+  .story-grid p:first-of-type{
+    font-family:'Fraunces', serif;
+    font-size:1.35rem;
+    font-weight:500;
+    line-height:1.45;
+  }
+  .pull{
+    border-left:2px solid var(--mustard);
+    padding-left:24px;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.2rem;
+    color:var(--navy);
+    align-self:start;
+  }
+  @media (max-width:760px){ .story-grid{grid-template-columns:1fr;} }
+
+  /* ---------- LEDGER ---------- */
+  .ledger{
+    border-top:1px solid var(--rule-strong);
+  }
+  .ledger-row{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:24px;
+    align-items:baseline;
+    padding:22px 0;
+    border-bottom:1px solid var(--rule);
+  }
+  .ledger-row:hover{background:var(--paper-2);}
+  .ledger-num{
+    font-family:'Fraunces', serif;
+    font-size:2.4rem;
+    font-weight:600;
+    color:var(--ink);
+    white-space:nowrap;
+  }
+  .ledger-desc{font-size:0.98rem; color:var(--ink-soft);}
+  .ledger-desc strong{color:var(--ink); font-weight:600;}
+  .ledger-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--sage);
+    display:block;
+    margin-bottom:6px;
+  }
+  @media (max-width:600px){
+    .ledger-row{grid-template-columns:1fr; gap:6px;}
+    .ledger-num{font-size:2rem;}
+  }
+
+  /* ---------- CAPABILITIES ---------- */
+  .chip-grid{display:flex; flex-wrap:wrap; gap:12px;}
+  .chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.04em;
+    padding:10px 16px;
+    border:1px solid var(--rule-strong);
+    border-radius:2px;
+    background:var(--paper-2);
+    color:var(--ink);
+  }
+
+  .value-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1px;
+    background:var(--rule);
+    border:1px solid var(--rule);
+    margin-top:8px;
+  }
+  .value-card{
+    background:var(--paper);
+    padding:32px;
+  }
+  .value-card .vnum{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    color:var(--mustard);
+    background:var(--ink);
+    display:inline-block;
+    padding:3px 9px;
+    margin-bottom:14px;
+  }
+  .value-card h3{font-size:1.2rem; margin-bottom:10px;}
+  .value-card p{color:var(--ink-soft); font-size:0.96rem;}
+  @media (max-width:700px){ .value-grid{grid-template-columns:1fr;} }
+
+  /* ---------- JOURNEY ---------- */
+  .timeline{position:relative; padding-left:28px;}
+  .timeline::before{
+    content:"";
+    position:absolute; left:5px; top:6px; bottom:6px;
+    width:1px; background:var(--rule-strong);
+  }
+  .t-item{position:relative; padding-bottom:40px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:"";
+    position:absolute; left:-28px; top:6px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--navy);
+  }
+  .t-item.current::before{background:var(--mustard); border-color:var(--mustard);}
+  .t-date{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .t-item h3{font-size:1.25rem; margin-bottom:4px;}
+  .t-item .org{color:var(--navy); font-weight:500; font-size:0.95rem; margin-bottom:8px;}
+  .t-item ul{margin-left:18px; color:var(--ink-soft); font-size:0.95rem;}
+  .t-item li{margin-bottom:4px;}
+  .t-item p.desc{color:var(--ink-soft); font-size:0.95rem;}
+
+  /* ---------- MALOOM KYA ---------- */
+  .mk{
+    border:1px solid var(--ink);
+    background:var(--paper-2);
+    padding:40px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:32px;
+    align-items:center;
+  }
+  .mk-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--navy); margin-bottom:14px;
+  }
+  .mk-q{
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    font-weight:500;
+    min-height:3.4em;
+  }
+  .mk-a{
+    font-family:'Source Sans 3', sans-serif;
+    font-size:1rem;
+    color:var(--navy);
+    margin-top:10px;
+    min-height:1.6em;
+  }
+  .mk-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; letter-spacing:0.08em; text-transform:uppercase;
+    background:var(--ink); color:var(--paper);
+    border:none; padding:14px 22px; cursor:pointer;
+    white-space:nowrap;
+    transition:background 0.2s ease;
+  }
+  .mk-btn:hover{background:var(--navy);}
+  .mk-counter{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--ink-soft); margin-top:18px;
+  }
+  @media (max-width:700px){
+    .mk{grid-template-columns:1fr; padding:28px;}
+    .mk-btn{justify-self:start;}
+  }
+
+  /* ---------- ACHIEVEMENTS ---------- */
+  .ach-list{display:flex; flex-direction:column;}
+  .ach-row{
+    display:grid; grid-template-columns:1fr auto;
+    gap:24px; align-items:baseline;
+    padding:18px 0;
+    border-bottom:1px solid var(--rule);
+    font-family:'Fraunces', serif; font-size:1.2rem;
+  }
+  .ach-row span.year{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; color:var(--ink-soft);
+  }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{padding:80px 0 56px;}
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:48px;
+  }
+  footer h2{font-size:clamp(2rem,5vw,3.2rem); margin-bottom:18px;}
+  .contact-links{
+    display:flex; flex-direction:column; gap:14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+  }
+  .contact-links a{color:var(--ink); border-bottom:1px solid var(--rule-strong); padding-bottom:3px; width:fit-content;}
+  .contact-links a:hover{color:var(--navy); border-color:var(--navy); text-decoration:none;}
+  .foot-meta{
+    margin-top:64px;
+    padding-top:24px;
+    border-top:1px solid var(--rule);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  }
+  @media (max-width:700px){ .contact-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-mark">KDS</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#story">Story</a>
+      <a href="#ledger">Ledger</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#journey">Journey</a>
+      <a href="#value">Where I Add Value</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">HR Business Partner · Pune, India</p>
+        <h1>Karan D.<br><span class="accent">Sarda</span></h1>
+        <p class="role">People · Performance · Workforce Analytics</p>
+        <p class="lead">Six years into building workplaces that 10,000+ people actually want to show up to — through performance systems, attrition models, and a quiz show that 1,700 employees tune into every month.</p>
+      </div>
+      <div class="hero-links">
+        <a href="mailto:mail.kds21@gmail.com">Email</a>
+        <a href="https://linkedin.com/in/kdsarda" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="resume.pdf" target="_blank" rel="noopener">Download Résumé</a>
+        <a href="tel:+917743848280">+91 77438 48280</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Story</p>
+        <h2>From running a café to running attrition models</h2>
+      </div>
+      <div class="story-grid reveal">
+        <div>
+          <p>Karan didn't start in HR. He trained in hospitality at IHM Bangalore, then opened Café 221B in Pune — a small business that taught him, fast, what it actually takes to keep a team showing up and a customer coming back.</p>
+          <p>A stint in field sales at Whirlpool followed, then an MBA at FLAME University to put structure around what he'd learned about people and performance. Since 2020, that combination has played out at Bajaj Finance — first as a Management Trainee in Collections, now as a Senior Unit Manager and HR Business Partner across the collections and legal functions.</p>
+          <p>The work spans the full lifecycle: performance appraisals for thousands of employees, training frameworks that reach the field, redeployment projects that reshape teams, and an Early Warning System that flags attrition risk before it becomes a resignation letter.</p>
+        </div>
+        <div class="pull">
+          "HR isn't a support function when you treat it like a system — something you can measure, predict, and improve."
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEDGER -->
+  <section id="ledger">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">The Ledger</p>
+        <h2>Six years, by the numbers</h2>
+        <p>Every HR programme leaves a paper trail. Here's what's in Karan's.</p>
+      </div>
+      <div class="ledger reveal">
+        <div class="ledger-row">
+          <div class="ledger-num">10,000+</div>
+          <div class="ledger-desc"><span class="ledger-tag">Stakeholder reach</span>Employees across collections &amp; legal whose leaders Karan partners with directly on people strategy.</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-num">99%</div>
+          <div class="ledger-desc"><span class="ledger-tag">Performance management</span>Appraisal completion rate maintained across cycles — at a 10,000+ employee scale.</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-num">99.8%</div>
+          <div class="ledger-desc"><span class="ledger-tag">Training &amp; development</span>Completion rate for the On-the-Job Training framework Karan drove across field teams.</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-num">86%</div>
+          <div class="ledger-desc"><span class="ledger-tag">Engagement</span>Adoption rate for the digital engagement tools Karan rolled out across his teams.</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-num">1,700+</div>
+          <div class="ledger-desc"><span class="ledger-tag">"Maloom Kya"</span>Employees reached every month by the infotainment quiz programme Karan created and runs.</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-num">10%</div>
+          <div class="ledger-desc"><span class="ledger-tag">Attrition analytics</span>Of the workforce flagged as high-risk by the Early Warning System Karan built — early enough to act on.</div>
+        </div>
+        <div class="ledger-row">
+          <div class="ledger-num">3</div>
+          <div class="ledger-desc"><span class="ledger-tag">Workforce planning</span>Redeployment projects led to re-balance teams and optimise headcount.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section id="capabilities">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Capabilities</p>
+        <h2>What Karan brings to the table</h2>
+      </div>
+      <div class="chip-grid reveal">
+        <span class="chip">Performance Management</span>
+        <span class="chip">Employee Engagement</span>
+        <span class="chip">Attrition Analytics</span>
+        <span class="chip">Stakeholder Management</span>
+        <span class="chip">Workforce Planning</span>
+        <span class="chip">Training &amp; Development</span>
+        <span class="chip">Redeployment &amp; Mobility</span>
+        <span class="chip">MS Office / Excel</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section id="journey">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Journey</p>
+        <h2>Café owner to HR Business Partner</h2>
+      </div>
+      <div class="timeline reveal">
+        <div class="t-item current">
+          <div class="t-date">Sep 2022 — Present</div>
+          <h3>Senior Unit Manager — HR Business Partner</h3>
+          <div class="org">Bajaj Finance Ltd.</div>
+          <ul>
+            <li>Partner to leadership across Collections &amp; Legal, supporting 10,000+ employees</li>
+            <li>Built and ran the Early Warning System for attrition risk</li>
+            <li>Created "Maloom Kya" — a monthly quiz reaching 1,700+ employees</li>
+            <li>Led 3 redeployment projects and senior-leader JD creation</li>
+          </ul>
+        </div>
+        <div class="t-item">
+          <div class="t-date">Sep 2020 — Aug 2022</div>
+          <h3>Management Trainee — Collections</h3>
+          <div class="org">Bajaj Finance Ltd.</div>
+          <ul>
+            <li>Managed collection operations and field performance</li>
+            <li>Delivered training as a certified Silver Trainer</li>
+            <li>Received the Kudos Award; contributed to cross-sell initiatives</li>
+          </ul>
+        </div>
+        <div class="t-item">
+          <div class="t-date">2018 — 2020</div>
+          <h3>MBA</h3>
+          <div class="org">FLAME University, Pune</div>
+          <p class="desc">Brought structure to the instincts built running a business and a sales territory.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-date">2016 — 2018</div>
+          <h3>Area Sales Executive</h3>
+          <div class="org">Whirlpool</div>
+          <p class="desc">Field sales — learned what drives performance under pressure.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-date">2015 — 2016</div>
+          <h3>Founder</h3>
+          <div class="org">Café 221B, Pune</div>
+          <p class="desc">Ran a small business end-to-end — the first lesson in keeping a team and customers coming back.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-date">2012 — 2015</div>
+          <h3>BSc</h3>
+          <div class="org">IHM Bangalore</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHERE I ADD VALUE -->
+  <section id="value">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Where I Add Value</p>
+        <h2>Four things Karan is reliably good at</h2>
+      </div>
+      <div class="value-grid reveal">
+        <div class="value-card">
+          <span class="vnum">PERFORMANCE</span>
+          <h3>Running performance cycles at scale</h3>
+          <p>Leading appraisal cycles for 10,000+ employees with 99%+ completion — without it becoming a paperwork exercise for managers.</p>
+        </div>
+        <div class="value-card">
+          <span class="vnum">ANALYTICS</span>
+          <h3>Seeing attrition before it happens</h3>
+          <p>Built an Early Warning System that flags ~10% of the workforce as high-risk, giving leaders time to intervene instead of replace.</p>
+        </div>
+        <div class="value-card">
+          <span class="vnum">ENGAGEMENT</span>
+          <h3>Engagement that actually reaches the field</h3>
+          <p>Created "Maloom Kya," a monthly quiz-based programme that keeps 1,700+ remote employees current on policy and HR frameworks — and drove 86% adoption of digital engagement tools.</p>
+        </div>
+        <div class="value-card">
+          <span class="vnum">CAPABILITY</span>
+          <h3>Training that travels to where the work happens</h3>
+          <p>Drove an On-the-Job Training framework to 99.8% completion across field teams, and trains others as a certified Silver Trainer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MALOOM KYA WIDGET -->
+  <section id="maloom">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Maloom Kya?</p>
+        <h2>The quiz, but it's about Karan this time</h2>
+        <p>"Maloom Kya" — Hindi for "did you know?" — is the monthly trivia programme Karan runs for 1,700+ employees. Here's a small version, about him.</p>
+      </div>
+      <div class="mk reveal">
+        <div>
+          <div class="mk-label">Maloom Kya...</div>
+          <div class="mk-q" id="mkQuestion">...before HR, Karan ran his own café in Pune?</div>
+          <div class="mk-a" id="mkAnswer"></div>
+          <div class="mk-counter" id="mkCounter">Card 1 of 6</div>
+        </div>
+        <button class="mk-btn" id="mkBtn">Reveal</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Recognition</p>
+        <h2>A few markers along the way</h2>
+      </div>
+      <div class="ach-list reveal">
+        <div class="ach-row"><span>Prodigy Award</span><span class="year">2024</span></div>
+        <div class="ach-row"><span>Heroes Award (×3)</span><span class="year">Multiple cycles</span></div>
+        <div class="ach-row"><span>Kudos Award</span><span class="year">2020–2022</span></div>
+        <div class="ach-row"><span>Silver Trainer Certification</span><span class="year">2020–2022</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <footer id="contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="reveal">
+          <p class="eyebrow">Get in touch</p>
+          <h2>Let's talk people, performance, or both.</h2>
+          <p style="color:var(--ink-soft); max-width:480px;">Open to conversations about HR business partnering, people analytics, and workforce planning roles based in or around Pune.</p>
+        </div>
+        <div class="contact-links reveal">
+          <a href="mailto:mail.kds21@gmail.com">mail.kds21@gmail.com</a>
+          <a href="tel:+917743848280">+91 77438 48280</a>
+          <a href="https://linkedin.com/in/kdsarda" target="_blank" rel="noopener">linkedin.com/in/kdsarda</a>
+          <a href="resume.pdf" target="_blank" rel="noopener">Download résumé (PDF)</a>
+        </div>
+      </div>
+      <div class="foot-meta">
+        <span>Karan D. Sarda — Pune, India</span>
+        <span>Built with care, ledgered like everything else.</span>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  // mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Maloom Kya widget
+  const mkCards = [
+    {
+      q: "...before HR, Karan ran his own café in Pune?",
+      a: "Café 221B (2015–2016) — his first lesson in keeping a team and customers coming back."
+    },
+    {
+      q: "...\"Maloom Kya\" is a real monthly quiz Karan built — and it reaches 1,700+ employees?",
+      a: "It's an infotainment programme covering new policies and HR frameworks for remote field teams."
+    },
+    {
+      q: "...Karan partners directly with leaders across a 10,000+ employee base?",
+      a: "Across the Collections and Legal functions at Bajaj Finance, as HR Business Partner."
+    },
+    {
+      q: "...Karan's Early Warning System flags attrition risk before it happens?",
+      a: "It currently flags around 10% of the workforce as high-risk — early enough for leaders to act."
+    },
+    {
+      q: "...Karan studied hospitality at IHM Bangalore before his MBA?",
+      a: "BSc, IHM Bangalore (2012–2015) → MBA, FLAME University (2018–2020)."
+    },
+    {
+      q: "...Karan is a certified Silver Trainer and a 3x Heroes Award winner?",
+      a: "Earned during his time as a Management Trainee in Collections (2020–2022)."
+    }
+  ];
+  let mkIndex = 0;
+  let mkRevealed = false;
+  const mkQuestion = document.getElementById('mkQuestion');
+  const mkAnswer = document.getElementById('mkAnswer');
+  const mkCounter = document.getElementById('mkCounter');
+  const mkBtn = document.getElementById('mkBtn');
+
+  function renderMk() {
+    mkQuestion.textContent = mkCards[mkIndex].q;
+    mkAnswer.textContent = mkRevealed ? mkCards[mkIndex].a : '';
+    mkCounter.textContent = `Card ${mkIndex + 1} of ${mkCards.length}`;
+    mkBtn.textContent = mkRevealed ? 'Next' : 'Reveal';
+  }
+
+  mkBtn.addEventListener('click', () => {
+    if (!mkRevealed) {
+      mkRevealed = true;
+    } else {
+      mkIndex = (mkIndex + 1) % mkCards.length;
+      mkRevealed = false;
+    }
+    renderMk();
+  });
+
+  renderMk();
+</script>
+
+</body>
+</html>
